@@ -16,13 +16,13 @@ btn_num.forEach(button=>{
             display.textContent=num;
         }
         else{
-            console.log("hello");
+            // console.log("hello");
         display.textContent=num;
         calci+=`${button.textContent}`;
         counter=1;
         }
-        console.log(calci);
-        console.log(typeof(+calci));
+        // console.log(calci);
+        // console.log(typeof(+calci));
         // if(typeof(+calci)==`number`)
         // {
         //     calci+=`${button.textContent}`;
@@ -40,9 +40,9 @@ btn_sym.forEach(btn=>{
         calci+=` ${btn.textContent} `;
         counter=0;
         num='';
-        console.log(calci);
+        // console.log(calci);
         if(calci.split(" ").length>=3 && calci.split(" ")[2]!=''){
-            console.log(calci.split(" "));
+            // console.log(calci.split(" "));
         calculate();
         calci+=` ${btn.textContent} `;
         counter=0;
@@ -90,5 +90,45 @@ negate.addEventListener("click",()=>{
         num*=(-1);
         display.textContent=num;
         calci=num;
+    }
+});
+
+document.addEventListener("keydown",(e)=>{
+    console.log(+e.key);
+    if(!isNaN(+e.key))
+    {
+        num+=`${e.key}`;
+        if(counter==1)
+        {
+            calci+=`${e.key}`;
+            display.textContent=num;
+        }
+        else{
+            // console.log("hello");
+        display.textContent=num;
+        calci+=`${e.key}`;
+        counter=1;
+        }
+    }
+    else if(e.key===`+`|| e.key==="/" || e.key==="-" || e.key==="*" || e.key==="%")
+    {
+            calci+=` ${e.key} `;
+            //   console.log(calci.split(" "));
+            counter=0;
+            num='';
+            console.log(calci);
+            if(calci.split(" ").length>=3 && calci.split(" ")[2]!=''){
+                console.log(calci.split(" "));
+            calculate();
+            calci+=` ${e.key} `;
+            counter=0;
+            num='';
+            }
+    }
+    else if(e.key=="=" || e.key=="enter")
+    {
+        console.log(calci);
+        console.log(calci.split(" "));
+        calculate();
     }
 });
